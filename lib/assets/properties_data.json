@@ -1,0 +1,132 @@
+[
+  {
+    "id": 1,
+    "district": "الملقا",
+    "base_price_per_meter": 11250.0,
+    "default_specs": {
+      "type": "سكنية",
+      "soil_type": "خرسانية",
+      "street_width": 20,
+      "street_count": 1,
+      "services_available": true
+    },
+    "description": "أرض صلبة في الملقا مناسبة للبناء الفوري، حي مكتمل."
+  },
+  {
+    "id": 2,
+    "district": "العارض",
+    "base_price_per_meter": 8000.0,
+    "default_specs": {
+      "type": "تجارية",
+      "soil_type": "رملية",
+      "street_width": 60,
+      "street_count": 2,
+      "services_available": true
+    },
+    "description": "أرض تجارية على طريق الملك عبدالعزيز، واجهة شرقية."
+  },
+  {
+    "id": 3,
+    "district": "النرجس",
+    "base_price_per_meter": 9150.0,
+    "default_specs": {
+      "type": "سكنية",
+      "soil_type": "خرسانية",
+      "street_width": 15,
+      "street_count": 2,
+      "services_available": false
+    },
+    "description": "جنوب النرجس، منطقة واعدة استثمارياً."
+  },
+  {
+    "id": 4,
+    "district": "الياسمين",
+    "base_price_per_meter": 11000.0,
+    "default_specs": {
+      "type": "سكنية",
+      "soil_type": "خرسانية",
+      "street_width": 25,
+      "street_count": 1,
+      "services_available": true
+    },
+    "description": "مربع 14 الهادئ، أرض مستوية وجاهزة."
+  },
+  {
+    "id": 5,
+    "district": "حطين",
+    "base_price_per_meter": 13500.0,
+    "default_specs": {
+      "type": "تجارية",
+      "soil_type": "خرسانية",
+      "street_width": 36,
+      "street_count": 3,
+      "services_available": true
+    },
+    "description": "موقع استراتيجي في حطين الثغر، رأس بلك."
+  },
+  {
+    "id": 6,
+    "district": "العقيق",
+    "base_price_per_meter": 10500.0,
+    "default_specs": {
+      "type": "سكنية",
+      "soil_type": "مختلطة",
+      "street_width": 15,
+      "street_count": 1,
+      "services_available": true
+    },
+    "description": "قريبة من المركز المالي، مناسبة للاستثمار السكني."
+  },
+  {
+    "id": 7,
+    "district": "قرطبة",
+    "base_price_per_meter": 8000.0,
+    "default_specs": {
+      "type": "سكنية",
+      "soil_type": "خرسانية",
+      "street_width": 20,
+      "street_count": 1,
+      "services_available": true
+    },
+    "description": "حي مكتمل الخدمات ومأهول بالسكان."
+  },
+  {
+    "id": 8,
+    "district": "اليرموك",
+    "base_price_per_meter": 6000.0,
+    "default_specs": {
+      "type": "سكنية",
+      "soil_type": "رملية",
+      "street_width": 15,
+      "street_count": 1,
+      "services_available": true
+    },
+    "description": "فرصة عقارية بسعر اقتصادي في شرق الرياض."
+  },
+  {
+    "id": 9,
+    "district": "الملقا التجاري",
+    "base_price_per_meter": 15000.0,
+    "default_specs": {
+      "type": "تجارية",
+      "soil_type": "خرسانية",
+      "street_width": 80,
+      "street_count": 4,
+      "services_available": true
+    },
+    "description": "بلك تجاري كامل على طريق أنس بن مالك."
+  },
+  {
+    "id": 10,
+    "district": "الصحافة",
+    "base_price_per_meter": 10660.0,
+    "default_specs": {
+      "type": "تجارية",
+      "soil_type": "خرسانية",
+      "street_width": 30,
+      "street_count": 2,
+      "services_available": true
+    },
+    "description": "أرض ظهيرة تجاري في مربع 1."
+  }
+]

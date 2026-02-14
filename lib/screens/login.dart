@@ -23,7 +23,7 @@ class LoginState extends State<Login> {
     var screenHeight = MediaQuery.sizeOf(context).height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Color.fromARGB(255, 52, 32, 74),
       ),
       body:Container(
         decoration: BoxDecoration(
@@ -37,7 +37,7 @@ class LoginState extends State<Login> {
             width: screenWidth*0.8,
             height: screenHeight*0.3,
             decoration: BoxDecoration(
-            color: Colors.brown,
+            color: const Color.fromARGB(255, 52, 32, 74),
             borderRadius: BorderRadius.all(Radius.elliptical(12, 12))
             ),
             child: Column(
@@ -51,7 +51,7 @@ class LoginState extends State<Login> {
                       offset: Offset(5,5),
                       blurRadius: 4,)
                     ],
-                    color: Colors.amber,
+                    color: const Color.fromARGB(255, 255, 255, 255),
                     borderRadius: BorderRadius.all(Radius.circular(12))
                   ),
                   child: TextField(
@@ -60,10 +60,9 @@ class LoginState extends State<Login> {
                       border: InputBorder.none,
                       hint:Center(
                         child:
-                        Container(
-                        child:Text("اكتب ايميلك"))
-                      )
-                    ),),
+                        Text("Email"))
+                    ),
+                    ),
                 ),
                 Container(
                   height: screenHeight*0.09,
@@ -73,31 +72,40 @@ class LoginState extends State<Login> {
                       offset: Offset(5,5),
                       blurRadius: 4,)
                     ],
-                    color: Colors.amber,
+                    color: const Color.fromARGB(255, 245, 245, 245),
                     borderRadius: BorderRadius.all(Radius.circular(12))
                   ),
                   child: TextField(
-                    onTapAlwaysCalled: true,
+                    obscureText: true,
                     controller: passwordController,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hint:Center(
                         child:
-                        Container(
-                        child:Text("الرمز السري"))
-                      )
+                        Text("password"))
                     ),)
                 ),
-                ElevatedButton(onPressed: ()async{
-                  await authControl.signIn(
-                    emailController.text, 
-                    passwordController.text
-                    
-                    );  
-                    if(1==2){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeLogin())); 
+               ElevatedButton(
+                onPressed: () async {
+                  bool success = await authControl.signIn(
+                    emailController.text,
+                    passwordController.text,
+                  );
+                  if (success) { 
+                    if (context.mounted) {
+                      Navigator.pushReplacement(
+                        context, 
+                        MaterialPageRoute(builder: (context) => HomeLogin())
+                      ); 
                     }
-                }, child: Text("login"))
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Incorrect email or password"))
+                    );
+                  }
+                }, 
+                child: Text("login")
+              )
               ],
             ),
             )

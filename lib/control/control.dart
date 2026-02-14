@@ -1,33 +1,34 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:final_projict/screens/registration.dart';
-import 'package:final_projict/screens/login.dart';
+
 
 
 final supabase = Supabase.instance.client;
 
 class AuthControl {
   
-  Future<void> signUp(String email, String password) async {
+  Future<bool> signUp(String email, String password) async {
     try {
       await supabase.auth.signUp(
         email: email,
         password: password,
       );
-      print(true);
+      return true; 
     } catch (e) {
       print("Sign up error: $e");
+      return false;
     }
   }
 
-  Future<void> signIn(String email, String password) async {
+  Future<bool> signIn(String email, String password) async {
     try {
       await supabase.auth.signInWithPassword(
         email: email,
         password: password,
       );
-      true;
+      return true; 
     } catch (e) {
       print("Login error: $e");
+      return false; 
     }
   }
 

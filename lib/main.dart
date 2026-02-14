@@ -6,8 +6,8 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
   await Supabase.initialize(
-    url: "https://qkzzrmfwawwpdnvrhqca.supabase.co",
-    anonKey: "sb_publishable_wBVKDvBZ8R3HhFvdvZ7nBw_A15Gul5R",
+    url: "https://eeidfphnmkwywsxsfglf.supabase.co",
+    anonKey: "sb_publishable_Gh-PxQCiiiivD_Fau0KeKw_fFW4ZhBz",
   );
 
   runApp(const MainApp());
@@ -22,6 +22,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Home(),
+      debugShowCheckedModeBanner: false,
+    locale: Locale('ar', 'SA'),
     );
   }
 }

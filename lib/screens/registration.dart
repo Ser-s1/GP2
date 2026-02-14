@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:final_projict/control/control.dart';
+import 'package:final_projict/screens/login.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -20,7 +21,7 @@ class RegistrationState extends State<Registration> {
     var screenHeight = MediaQuery.sizeOf(context).height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Color.fromARGB(255, 52, 32, 74),
       ),
       body:Container(
             decoration: BoxDecoration(
@@ -28,71 +29,93 @@ class RegistrationState extends State<Registration> {
             image: AssetImage('lib/assets/back1.jpg'),
             fit: BoxFit.cover, 
               ),
-            ),        child:Center(
-          child:Container(
-            width: screenWidth*0.8,
-            height: screenHeight*0.3,
-            decoration: BoxDecoration(
-            color: Colors.brown,
-            borderRadius: BorderRadius.all(Radius.elliptical(12, 12))
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: screenHeight*0.09,
-                  width: screenWidth*0.7,
-                  decoration: BoxDecoration(
-                    boxShadow: [ BoxShadow(
-                      offset: Offset(5,5),
-                      blurRadius: 4,)
-                    ],
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.all(Radius.circular(12))
-                  ),
-                  child: TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hint:Center(
-                        child:
-                        Container(
-                        child:Text("اكتب ايميلك"))
-                      )
-                    ),),
+            ),  
+            child:Center(
+              child:Container(
+                width: screenWidth*0.8,
+                height: screenHeight*0.3,
+                decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 52, 32, 74),
+                borderRadius: BorderRadius.all(Radius.elliptical(12, 12))
                 ),
-                Container(
-                  height: screenHeight*0.09,
-                  width: screenWidth*0.7,
-                  decoration: BoxDecoration(
-                    boxShadow: [ BoxShadow(
-                      offset: Offset(5,5),
-                      blurRadius: 4,)
-                    ],
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.all(Radius.circular(12))
-                  ),
-                  child: TextField(
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hint:Center(
-                        child:
-                        Container(
-                        child:Text("الرمز السري"))
+                child: 
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+
+
+                      Container(
+                        height: screenHeight*0.09,
+                        width: screenWidth*0.7,
+                        decoration: BoxDecoration(
+                          boxShadow: [ BoxShadow(
+                            offset: Offset(5,5),
+                            blurRadius: 4,)
+                          ],
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          borderRadius: BorderRadius.all(Radius.circular(12))
+                        ),
+                        child: TextField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hint:Center(
+                              child:
+                              Text("Email"))
+                          ),
+                          ),
+                      ),
+
+
+                      Container(
+                        height: screenHeight*0.09,
+                        width: screenWidth*0.7,
+                        decoration: BoxDecoration(
+                          boxShadow: [ BoxShadow(
+                            offset: Offset(5,5),
+                            blurRadius: 4,)
+                          ],
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          borderRadius: BorderRadius.all(Radius.circular(12))
+                        ),
+                        child: TextField(
+                          obscureText: true,
+                          controller: passwordController,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hint:Center(
+                              child:
+                              Text("password"))
+                          ),
+                          )
+                      ),
+
+
+                      ElevatedButton(
+                        onPressed: () async {
+                          bool isCreated = await authControl.signUp(
+                            emailController.text.trim(), 
+                            passwordController.text.trim()
+                          );
+                          if (isCreated) {
+                            if (context.mounted) {
+                              Navigator.pushReplacement(
+                                context, 
+                                MaterialPageRoute(builder: (context) => Login()) 
+                              ); 
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("There is a problem."))
+                            );
+                          }
+                        }, 
+                        child: const Text("Registration")
                       )
-                    ),)
-                ),
-                ElevatedButton(onPressed: ()async{
-                  await registerControl.createAccount(
-                    emailController.text, 
-                    passwordController.text
-                    );
-                }, child: Text("Registr"))
-              ],
-            ),
+                    ],
+                  ),
+              )
             )
-      )
       )
     );
   }

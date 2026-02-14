@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_generative_ai: ^0.4.6
   nav: ^1.4.3
   supabase: ^2.10.2
   supabase_flutter: ^2.12.0
