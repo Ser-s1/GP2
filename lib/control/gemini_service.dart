@@ -4,7 +4,7 @@ import 'logic.dart';
 class RealEstateAgent {
   late final GenerativeModel _model;
   late ChatSession _chat;
-  final String _apiKey = ''; 
+  final String _apiKey = 'AIzaSyBNBPEtLJ5Fw85Yz8ftgp1uLAo_M4ox7P4'; 
 
   RealEstateAgent() {
     _initialize();
@@ -38,10 +38,10 @@ class RealEstateAgent {
     );
 
     _model = GenerativeModel(
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash',
       apiKey: _apiKey,
       tools: [Tool(functionDeclarations: [evaluateTool, loanTool])],
-      systemInstruction: Content.system('يا حمار لا تجلطني انت مقاول على الاراضي اللي معطيك اياها في ملف الجيسون اي احد يسألك تسعر له بستخدام التطبيق يا تنح '
+      systemInstruction: Content.system('  انت مقاول على الاراضي اللي معطيك اياها في ملف الجيسون اي احد يسألك تسعر له بستخدام التطبيق   '
   'ممنوع المقدمات. مثال: "الحي: الملقا | السعر: 4.5 مليون | سعر المتر: 11,250".'),
     );
 

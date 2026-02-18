@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:final_projict/control/control.dart';
+import 'package:final_projict/control/widgets.dart';
+import 'package:final_projict/control/Button.dart';
 import 'package:final_projict/screens/login.dart';
+import 'package:final_projict/screens/home.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -11,8 +14,8 @@ class Registration extends StatefulWidget {
 
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
-final registerControl = RegisterControl();
-final authControl = AuthControl();
+
+
 
 class RegistrationState extends State<Registration> {
   @override
@@ -20,22 +23,22 @@ class RegistrationState extends State<Registration> {
     var screenWidth = MediaQuery.sizeOf(context).width;
     var screenHeight = MediaQuery.sizeOf(context).height;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 52, 32, 74),
-      ),
+
       body:Container(
             decoration: BoxDecoration(
             image: DecorationImage(
-            image: AssetImage('lib/assets/back1.jpg'),
+            image: AssetImage('lib/assets/back2.png'),
             fit: BoxFit.cover, 
               ),
             ),  
             child:Center(
               child:Container(
                 width: screenWidth*0.8,
-                height: screenHeight*0.3,
+                height: screenHeight*0.45,
                 decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 52, 32, 74),
+                image: DecorationImage(
+                  image: AssetImage('lib/assets/image2.png'),
+                  fit: BoxFit.cover,),
                 borderRadius: BorderRadius.all(Radius.elliptical(12, 12))
                 ),
                 child: 
@@ -43,75 +46,44 @@ class RegistrationState extends State<Registration> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
 
+                      TextFieldWidget(hint: "Email", Controller: emailController),
 
-                      Container(
-                        height: screenHeight*0.09,
-                        width: screenWidth*0.7,
-                        decoration: BoxDecoration(
-                          boxShadow: [ BoxShadow(
-                            offset: Offset(5,5),
-                            blurRadius: 4,)
-                          ],
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                          borderRadius: BorderRadius.all(Radius.circular(12))
-                        ),
-                        child: TextField(
-                          controller: emailController,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hint:Center(
-                              child:
-                              Text("Email"))
-                          ),
-                          ),
-                      ),
+                      TextFieldWidget(
+                        hint: "Password",
+                         Controller: passwordController,
+                         isObscure: true,
+                         ),
 
-
-                      Container(
-                        height: screenHeight*0.09,
-                        width: screenWidth*0.7,
-                        decoration: BoxDecoration(
-                          boxShadow: [ BoxShadow(
-                            offset: Offset(5,5),
-                            blurRadius: 4,)
-                          ],
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                          borderRadius: BorderRadius.all(Radius.circular(12))
-                        ),
-                        child: TextField(
-                          obscureText: true,
-                          controller: passwordController,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hint:Center(
-                              child:
-                              Text("password"))
-                          ),
-                          )
-                      ),
-
-
-                      ElevatedButton(
-                        onPressed: () async {
-                          bool isCreated = await authControl.signUp(
-                            emailController.text.trim(), 
-                            passwordController.text.trim()
-                          );
-                          if (isCreated) {
-                            if (context.mounted) {
-                              Navigator.pushReplacement(
-                                context, 
-                                MaterialPageRoute(builder: (context) => Login()) 
-                              ); 
-                            }
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("There is a problem."))
-                            );
-                          }
-                        }, 
-                        child: const Text("Registration")
-                      )
+                ElevatedButton(
+                  onPressed: () async{
+                    try{
+                    await Database().signUp(
+                    email: emailController.text,
+                    password: passwordController.text,
+                    );
+                    if (context.mounted) {
+                      context.pushAndDelete(Login());
+                    }
+                    }catch(e){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Error during registration"))
+                      );
+                  }
+                  },
+                  child: Text("Sign up"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    context.pushAndDelete(Login());
+                  },
+                  child: Text("have an account? login"),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    context.pushAndDelete(Home());
+                  },
+                  child: Text("Home page"),
+              ),
                     ],
                   ),
               )

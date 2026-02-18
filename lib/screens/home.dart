@@ -20,7 +20,7 @@ class _MyWidgetState extends State<Home> {
      Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('lib/assets/back1.jpg'),
+            image: AssetImage('lib/assets/back2.png'),
             fit: BoxFit.cover, 
               ),
             ),
@@ -28,7 +28,7 @@ class _MyWidgetState extends State<Home> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text("Willcom To realstat App",style: TextStyle(color: Colors.white,fontSize: 34),),
+                Text("Willcom To realstat App",style: TextStyle(color: const Color.fromARGB(255, 74, 238, 68),fontSize: 34),),
                 Row( 
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -37,7 +37,7 @@ class _MyWidgetState extends State<Home> {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Registration())); 
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 69, 22, 152), 
+                      backgroundColor: const Color.fromARGB(255, 74, 238, 68), 
                       foregroundColor: Colors.white,      
                       minimumSize: const Size(150, 50),   
                       padding: const EdgeInsets.all(15),  
@@ -53,7 +53,7 @@ class _MyWidgetState extends State<Home> {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => Login())); 
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 69, 22, 152), 
+                      backgroundColor: const Color.fromARGB(255, 74, 238, 68), 
                       foregroundColor: Colors.white,      
                       minimumSize: const Size(150, 50),  
                       padding: const EdgeInsets.all(15),  
