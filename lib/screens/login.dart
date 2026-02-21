@@ -61,10 +61,11 @@ class LoginState extends State<Login> {
                     password: passwordController.text,
                   );
                     if (context.mounted) {
-                      context.push(HomeLogin());
+                      context.push(context, HomeLogin());
                     }
                   }catch(e){
-                    ScaffoldMessenger.of(context,).showSnackBar(
+                    if (!context.mounted) return;
+                    ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text(e.toString()))
                       );
                   }
@@ -73,13 +74,13 @@ class LoginState extends State<Login> {
               ),
               TextButton(
                   onPressed: () async {
-                    context.pushAndDelete(Registration());
+                    context.pushAndDelete(context, Registration());
                   },
                   child: Text("don't have an account? signup"),
               ),
               TextButton(
                   onPressed: () async {
-                    context.pushAndDelete(Home());
+                    context.pushAndDelete(context, Home());
                   },
                   child: Text("Home page"),
               ),

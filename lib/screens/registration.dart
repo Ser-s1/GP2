@@ -62,7 +62,7 @@ class RegistrationState extends State<Registration> {
                     password: passwordController.text,
                     );
                     if (context.mounted) {
-                      context.pushAndDelete(Login());
+                      context.pushAndDelete(context, Login());
                     }
                     }catch(e){
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -74,13 +74,13 @@ class RegistrationState extends State<Registration> {
                 ),
                 TextButton(
                   onPressed: () {
-                    context.pushAndDelete(Login());
+                    context.pushAndDelete(context, Login());
                   },
                   child: Text("have an account? login"),
                 ),
                 TextButton(
                   onPressed: () async {
-                    context.pushAndDelete(Home());
+                    context.pushAndDelete(context, Home());
                   },
                   child: Text("Home page"),
               ),

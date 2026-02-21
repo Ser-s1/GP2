@@ -16,7 +16,7 @@ class _HistoryPageState extends State<HistoryPage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: const Icon(Icons.delete),
+            icon: const Icon(Icons.delete, color: Color.fromARGB(255, 74, 238, 68)),
             onPressed: () {
               setState(() {
                 ChatStorage.allChats.clear();

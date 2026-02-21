@@ -1,14 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
-// متغير عام لتخزين البيانات بعد تحميلها
 List<dynamic> propertyDatabase = [];
 
 /// دالة تحميل البيانات من ملف JSON
-/// يجب استدعاؤها مرة واحدة عند تشغيل التطبيق
 Future<void> loadPropertyData() async {
   try {
-    final String response = await rootBundle.loadString('assets/properties_data.json');
+    final String response = await rootBundle.loadString('lib/assets/properties_data.json');
     propertyDatabase = json.decode(response);
     print("✅ تم تحميل بيانات العقارات بنجاح: ${propertyDatabase.length} سجل.");
   } catch (e) {
@@ -54,15 +52,15 @@ final districtData = propertyDatabase.firstWhere(
   String defaultType = defaults['type'];
   
   if (reqType == 'تجارية' && defaultType == 'سكنية') {
-    multiplier += 0.40; 
+    multiplier += 0.10; 
   } else if (reqType == 'سكنية' && defaultType == 'تجارية') {
-    multiplier -= 0.20; 
+    multiplier -= 0.05; 
   }
 
   int reqStreets = streetCount ?? defaults['street_count'];
-  if (reqStreets == 2) multiplier += 0.10;
-  if (reqStreets == 3) multiplier += 0.15;
-  if (reqStreets >= 4) multiplier += 0.20;
+  if (reqStreets == 2) multiplier += 0.05;
+  if (reqStreets == 3) multiplier += 0.10;
+  if (reqStreets == 4) multiplier += 0.15;
 
   bool reqServices = servicesAvailable ?? defaults['services_available'];
   if (!reqServices) multiplier -= 0.15;
@@ -101,14 +99,11 @@ Future<Map<String, dynamic>> calculateLoan({
   double userSalary = salary ?? 12000.0;
   double userLiabilities = liabilities ?? 0.0;
 
-  // الاستقطاع المسموح (65%)
   double monthlyLimit = (userSalary - userLiabilities) * 0.65;
   
-  // مدة 20 سنة
   int years = 20;
   double maxLoanAmount = monthlyLimit * 12 * years;
 
-  // التحقق من الأهلية
   double deficit = propertyValue - maxLoanAmount;
   bool isEligible = maxLoanAmount >= propertyValue;
 

@@ -54,7 +54,7 @@ class _HomeLoginState extends State<HomeLogin> {
         icon: const Icon(Icons.menu), 
         itemBuilder: (context) => [
           PopupMenuItem(
-            onTap: () => context.push(Home()),
+            onTap: () => context.push(context, Home()),
             child: const Text("Home"),
           ),
           PopupMenuItem(
@@ -64,7 +64,7 @@ class _HomeLoginState extends State<HomeLogin> {
                   'messages': List.from(_messages), 
                 });
               }
-              context.push(HistoryPage());
+              context.push(context, HistoryPage());
             },
             child: const Text("History"),
           ),

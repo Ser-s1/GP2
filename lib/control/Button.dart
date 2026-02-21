@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 extension Nav on BuildContext{
-  push(Widget target){
-    Navigator.push(this,MaterialPageRoute(builder: (context) {
+void push(BuildContext context,Widget target){
+    Navigator.push(context,MaterialPageRoute(builder: (context) {
       return target;
     },));
   }
 
-  pushAndDelete(Widget target){
-    Navigator.pushAndRemoveUntil(this,MaterialPageRoute(builder: (context) {
-      return target;
-    },),(route) => false);
-  }
+void pushAndDelete(BuildContext context, Widget target) {
+  Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context) => target),
+    (route) => false, 
+  );
+}
 }
