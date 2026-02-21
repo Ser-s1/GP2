@@ -28,7 +28,7 @@ class _MyWidgetState extends State<Home> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text("Willcom To realstat App",style: TextStyle(color: const Color.fromARGB(255, 74, 238, 68),fontSize: 34),),
+                Center(child: Text("Welcome to the Real Estate Assistant app",style: TextStyle(color: const Color.fromARGB(255, 74, 238, 68),fontSize: 34),)),
                 Row( 
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

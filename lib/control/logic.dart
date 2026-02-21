@@ -8,9 +8,9 @@ Future<void> loadPropertyData() async {
   try {
     final String response = await rootBundle.loadString('lib/assets/properties_data.json');
     propertyDatabase = json.decode(response);
-    print("✅ تم تحميل بيانات العقارات بنجاح: ${propertyDatabase.length} سجل.");
+    print(" تحملت ${propertyDatabase.length} سجل.");
   } catch (e) {
-    print("❌ خطأ في تحميل ملف البيانات: $e");
+    print("ما تحملت: $e");
   }
 }
 
