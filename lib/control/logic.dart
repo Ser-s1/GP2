@@ -114,7 +114,7 @@ Future<Map<String, dynamic>> calculateLoan({
     'is_eligible': isEligible,
     'monthly_installment': monthlyLimit,
     'advice': isEligible 
-        ? "ممتاز! راتبك يغطي شراء الأرض بالكامل."
+        ? " راتبك يغطي شراء الأرض ."
         : "التمويل المتاح (${maxLoanAmount.toStringAsFixed(0)}) أقل من قيمة الأرض. تحتاج لدفعة أولى: ${deficit.toStringAsFixed(0)} ريال."
   };
 }
