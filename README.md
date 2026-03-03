@@ -57,7 +57,7 @@ This program is a real estate brokerage tool that calculates the expected market
 
 <P>Thank you for reading. It did take some time and effort, but all thanks go to the esteemed teacher Mohammed Al-Awashiz for opening this door for me – the door to Flutter. It's one of the most enjoyable programming languages ​​and has opened many horizons for me in understanding how structures work. Thank you all again.</P>
 
-# اذا عندك اي سؤال ذا رقمي : 0593746102
+# Contact me : 0593746102
 ## 📁 Project Structure
 
 ```text
