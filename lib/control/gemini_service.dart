@@ -4,7 +4,7 @@ import 'logic.dart';
 class RealEstateAgent {
   late final GenerativeModel _model;
   late ChatSession _chat;
-  final String _apiKey = ''; 
+  final String _apiKey = 'AIzaSyD5xDcrk4x-yT3sbG3SnNElYH_DzGj_pPU'; 
 
   RealEstateAgent() {
     _initialize();
@@ -38,11 +38,16 @@ class RealEstateAgent {
     );
 
     _model = GenerativeModel(
-      model: 'gemini-2.0-flash',
+      model: 'gemini-2.5-flash',
       apiKey: _apiKey,
       tools: [Tool(functionDeclarations: [evaluateTool, loanTool])],
-      systemInstruction: Content.system('  انت مقاول على الاراضي الرد يكون مختصر وواضح  '
-  'ممنوع المقدمات. مثال: "الحي: الملقا | السعر: 4.5 مليون | سعر المتر: 11,250".'),
+      systemInstruction: Content.system('you are a helpful real estate agent that provides accurate land evaluations and loan calculations based on user input. Always respond in the same language as the user. Follow these'
+      '1- Do not deviate from the context of the JSON file'
+      '2- Ask about the user loan calculation after determining the land value'
+      '3- Specify the ten neighborhoods listed in the JSON file when asking the question'
+      '4- Dont list neighborhoods if the user already specified one of them in the question'
+      '50 dont writ code or functions in your response, only respond with text and ask questions to get the required information to evaluate the land and calculate the loan'
+      ),
     );
 
     _chat = _model.startChat();

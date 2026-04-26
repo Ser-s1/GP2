@@ -34,9 +34,11 @@ class _HomeLoginState extends State<HomeLogin> {
       setState(() {
         _messages.add({'sender': 'gemini', 'text': response});
       });
-    } catch (e) {
+      
+    } catch (e) { // التعديل 1: التقاط الخطأ بشكل صحيح
       setState(() {
-        _messages.add({'sender': 'gemini', 'text': 'عذراً، حدث خطأ: $e'});
+        // التعديل 2: تمرير الخطأ للدالة وطباعة النتيجة
+        _messages.add({'sender': 'gemini', 'text': ex(e)}); 
       });
     } finally {
       setState(() {
@@ -44,58 +46,67 @@ class _HomeLoginState extends State<HomeLogin> {
       });
     }
   }
+
+  // التعديل 3: كتابة منطق الدالة بشكل صحيح للبحث داخل النص
+  String ex(Object error) {
+    String s = error.toString();
+    
+    if (s.contains('503') || s.contains('high demand')) {
+      return "اعد المحاولة";
+    } else if (s.contains('SocketException') || s.contains('ClientException')) {
+      return "لا يوجد اتصال بالانترنت";
+    } else {
+      return "حدث خطأ غير متوقع";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: 
-      AppBar(
-      leading: PopupMenuButton(
-        icon: const Icon(Icons.menu), 
-        itemBuilder: (context) => [
-          PopupMenuItem(
-            onTap: () => context.push(context, Home()),
-            child: const Text("Home"),
-          ),
-          PopupMenuItem(
-            onTap: () {
-              if (_messages.isNotEmpty) {
-                ChatStorage.allChats.add({
-                  'messages': List.from(_messages), 
+      appBar: AppBar(
+        leading: PopupMenuButton(
+          icon: const Icon(Icons.menu), 
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              onTap: () => context.push(context, Home()),
+              child: const Text("Logout"),
+            ),
+            PopupMenuItem(
+              onTap: () {
+                if (_messages.isNotEmpty) {
+                  ChatStorage.allChats.add({
+                    'messages': List.from(_messages), 
+                  });
+                }
+                context.push(context, HistoryPage());
+              },
+              child: const Text("History"),
+            ),
+            PopupMenuItem(
+              onTap: () {
+                setState(() {
+                  _messages.clear(); 
                 });
-              }
-              context.push(context, HistoryPage());
-            },
-            child: const Text("History"),
-          ),
-          PopupMenuItem(
-        onTap: () {
-          setState(() {
-            _messages.clear(); 
-          });
-        },
-        child: const Row(
-          children: [
-            Icon(Icons.add, color: Colors.black),
-            SizedBox(width: 10),
-            Text("New Chat"),
+              },
+              child: const Row(
+                children: [
+                  Icon(Icons.add, color: Colors.black),
+                  SizedBox(width: 10),
+                  Text("New Chat"),
+                ],
+              ),
+            ),
           ],
         ),
       ),
-        ],
-      ),
-  ),
-
-      body:
-      
-       Container(
-         decoration: BoxDecoration(
-              image: DecorationImage(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
             image: AssetImage('lib/assets/back2.png'),
             fit: BoxFit.cover,
-              ),
-            ),
-         child: Column(
+          ),
+        ),
+        child: Column(
           children: [
             Expanded(
               child: ListView.builder(
@@ -118,21 +129,17 @@ class _HomeLoginState extends State<HomeLogin> {
                         style: const TextStyle(fontSize: 16),
                       ),
                     ),
-                    
                   );
-                  
                 },
-              
               ),
             ),
-            
             if (_isLoading)
               Align(
                 alignment: Alignment.centerLeft, 
-                     child:  LoadingAnimationWidget.staggeredDotsWave(
-                        color: Colors.teal,
-                        size: 25, 
-                      ), 
+                child: LoadingAnimationWidget.staggeredDotsWave(
+                  color: Colors.teal,
+                  size: 25, 
+                ), 
               ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -140,14 +147,16 @@ class _HomeLoginState extends State<HomeLogin> {
                 children: [
                   Expanded(
                     child: Container(
-                    decoration: BoxDecoration(
-                    boxShadow: [ BoxShadow(
-                      offset: Offset(5,5),
-                      blurRadius: 4,)
-                    ],
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
+                      decoration: BoxDecoration(
+                        boxShadow: const [ 
+                          BoxShadow(
+                            offset: Offset(5,5),
+                            blurRadius: 4,
+                          )
+                        ],
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                       child: TextField(
                         controller: _controller,
                         decoration: InputDecoration(
@@ -169,8 +178,8 @@ class _HomeLoginState extends State<HomeLogin> {
               ),
             ),
           ],
-               ),
-       ),
+        ),
+      ),
     );
   }
 }
