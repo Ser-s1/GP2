@@ -4,7 +4,7 @@ import 'logic.dart';
 class RealEstateAgent {
   late final GenerativeModel _model;
   late ChatSession _chat;
-  final String _apiKey = 'AIzaSyD5xDcrk4x-yT3sbG3SnNElYH_DzGj_pPU'; 
+  final String _apiKey = ''; 
 
   RealEstateAgent() {
     _initialize();
